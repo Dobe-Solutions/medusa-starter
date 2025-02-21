@@ -1,11 +1,7 @@
 # Medusa boilerplate
 
-1. Run database with docker: `docker compose up -d`
+1. Run the `setup.sh` script for setting up a new Medusa project. You may change the variables following your needs.
 
-2. Initialize a new Medusa.js project: `npx create-medusa-app@latest my-medusa-store`
-
-3. Create an admin user for the backend: `npx medusa user -e medusa@medusajs.com -p medusa`
-
-4. The backend will run here: `http://localhost:9000`
+2. Login into the backend will be available here: `http://localhost:9000/app/login`
 
 For more information check the official documentation here: https://docs.medusajs.com/learn/installation
