@@ -3,11 +3,11 @@ services:
     container_name: medusa_db
     image: postgres
     environment:
-      POSTGRES_USER: medusa
-      POSTGRES_PASSWORD: medusa
-      POSTGRES_DB: medusa
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - medusa_db_vol:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     restart: unless-stopped
@@ -16,3 +16,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
+volumes:
+  medusa_db_vol:

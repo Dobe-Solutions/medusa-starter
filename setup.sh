@@ -1,9 +1,16 @@
 #!/bin/bash
+if [ ! -f ".env" ]; then
+    echo "Error: Create a .env file first based on the .env.template file"
+    exit 1
+else
+    # shellcheck source=/dev/null
+    source ".env"
+fi
 
-MEDUSA_PROJECT_NAME=my-medusa-store
-MEDUSA_ADMIN_USER_EMAIL=medusa@example.com
-
+# Start database
 docker compose up -d
-npx create-medusa-app@latest --db-url "postgres://medusa:medusa@localhost:5432/medusa" $MEDUSA_PROJECT_NAME
-cd $MEDUSA_PROJECT_NAME
-npx medusajs/medusa-cli user -e $MEDUSA_ADMIN_USER_EMAIL -p medusa
+
+npx create-medusa-app@latest --db-url postgres://"$POSTGRES_USER":"$POSTGRES_PASSWORD"@localhost:5432/"$POSTGRES_DB" "$MEDUSA_PROJECT_NAME"
+
+cd "$MEDUSA_PROJECT_NAME" || exit
+npx medusa user -e "$MEDUSA_ADMIN_USER_EMAIL" -p "$MEDUSA_ADMIN_PASSWORD"
