@@ -14,7 +14,7 @@ if [ -d "$MEDUSA_PROJECT_NAME" ]; then
     echo "Folder '$MEDUSA_PROJECT_NAME' already exists. Skipping project creation."
 else
     echo "Creating Medusa project: $MEDUSA_PROJECT_NAME"
-    npx create-medusa-app@latest --verbose --skip-db
+    npx create-medusa-app@latest --verbose --skip-db "$MEDUSA_PROJECT_NAME"
 
     echo "" >> "$MEDUSA_PROJECT_NAME/.env"
     echo "MEDUSA_PROJECT_NAME=$MEDUSA_PROJECT_NAME" >> "$MEDUSA_PROJECT_NAME/.env"
